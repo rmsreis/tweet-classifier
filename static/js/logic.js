@@ -5,7 +5,7 @@ var probdata = [];
 
 // KML DATA
 var ireland = "static/data/Irl.kml";
-var united = "static/data/UK.kml";v
+var united = "static/data/UK.kml";
 
 // FUNCTION FOR PASSING TEXT TO BACKEND //
 $(function() {
@@ -17,7 +17,8 @@ $(function() {
     })
     // RETURNS DATA FROM BACKEND AND UPDATES MAP //
     .done(function(data) {
-      probdata = data.output
+      probdata = [];
+      probdata.push(data.output);
       addlayers();
     });
     event.preventDefault();
@@ -148,25 +149,16 @@ info.onAdd = function (map) {
 
 // function for grabbing percentage
 function percgrab(id) {   
-    
   var d = 0;
-  
   // Go Through indexdat JSON object to grab probability for each county
-  ire_testdata.forEach(function(data) {
-      if (data.name == id) {
-          d = parseFloat(data.prob)
-          console.log("this is my name: "+id+" - this is my prob: "+d)
-      }
-  })
-
-  uk_testdata.forEach(function(data) {
+  probdata.forEach(function(data) {
       if (data.name == id) {
           d = parseFloat(data.prob)
           console.log("this is my name: "+id+" - this is my prob: "+d)
       }
   })
   
-  return (d)
+  return d
 }
 
 // FUNCTION FOR POPULATING INFORMAITON AREA //
