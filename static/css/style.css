@@ -15,10 +15,47 @@ body {
     position: absolute;
     right: 0px;
     width: 50%;
-    background-color: #ff0;
 }
 
 
 #map, body, html {
     height: 100%;
+}
+
+
+.legend {
+    background-color: white;
+    border-color: grey;
+    border-style: solid;
+    border-radius: 10px;
+    line-height: 20px;
+    color: black;
+    width: auto;
+    padding: 5px 5px 5px 5px;
+}
+  
+.legend i {
+    width: 30px;
+    height: 20px;
+    float: left;
+    margin-right: 5px;
+    opacity: 0.9;
+}
+  
+h4 {
+    margin: 0px;
+    padding: 0px;
+}
+  
+.info {
+    padding: 6px 8px;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
 }
