@@ -1,0 +1,24 @@
+body {
+    padding: 0;
+    margin: 0;
+  }
+
+.mybg {
+    background-color: #c0deed;
+}
+
+.mybutton {
+    background-color: #0084b4;
+}
+
+#map {
+    position: absolute;
+    right: 0px;
+    width: 50%;
+    background-color: #ff0;
+}
+
+
+#map, body, html {
+    height: 100%;
+}
