@@ -148,25 +148,16 @@ info.onAdd = function (map) {
 
 // function for grabbing percentage
 function percgrab(id) {   
-    
   var d = 0;
-  
   // Go Through indexdat JSON object to grab probability for each county
-  ire_testdata.forEach(function(data) {
-      if (data.name == id) {
-          d = parseFloat(data.prob)
-          console.log("this is my name: "+id+" - this is my prob: "+d)
-      }
-  })
-
-  uk_testdata.forEach(function(data) {
+  probdata.forEach(function(data) {
       if (data.name == id) {
           d = parseFloat(data.prob)
           console.log("this is my name: "+id+" - this is my prob: "+d)
       }
   })
   
-  return (d)
+  return colorGrade(d)
 }
 
 // FUNCTION FOR POPULATING INFORMAITON AREA //
