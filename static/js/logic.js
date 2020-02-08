@@ -5,7 +5,7 @@ var probdata = [];
 
 // KML DATA
 var ireland = "static/data/Irl.kml";
-var united = "static/data/UK.kml";v
+var united = "static/data/UK.kml";
 
 // FUNCTION FOR PASSING TEXT TO BACKEND //
 $(function() {
@@ -17,7 +17,8 @@ $(function() {
     })
     // RETURNS DATA FROM BACKEND AND UPDATES MAP //
     .done(function(data) {
-      probdata = data.output
+      probdata = [];
+      probdata.push(data.output);
       addlayers();
     });
     event.preventDefault();
@@ -157,7 +158,7 @@ function percgrab(id) {
       }
   })
   
-  return colorGrade(d)
+  return d
 }
 
 // FUNCTION FOR POPULATING INFORMAITON AREA //
