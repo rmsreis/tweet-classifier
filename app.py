@@ -37,9 +37,11 @@ def predict():
 
     #Sample change output
     # output = tweet + "ADDED"
-
+    output = {'name': 'Powys', 
+              'prob': '38'}  
     #Returns json
-    return jsonify({'output': location})
+    # return jsonify({'output': output , 'prob':'90'})
+    return output
 
 
 if __name__ == "__main__":
