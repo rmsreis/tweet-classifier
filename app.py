@@ -31,18 +31,18 @@ def predict():
     Classify a tweet by city 
     """
 
-    text_features = tfidf.transform(tweet)
-    predictions = clf2.predict(text_features)
-    location = id_to_category[predictions[0]]
+    # text_features = tfidf.transform(tweet)
+    # predictions = clf2.predict(text_features)
+    # location = id_to_category[predictions[0]]
 
     #Sample change output
     # output = tweet + "ADDED"
-    output = {'name': 'Powys', 
-              'prob': '38'}  
-    #Returns json
-    # return jsonify({'output': output , 'prob':'90'})
-    return output
 
+    output = {'name': 'Highland', 'prob': '98'}
+    # output = tweet
+
+    #Returns json
+    return jsonify({'output': output})
 
 if __name__ == "__main__":
     app.run(debug=True)
