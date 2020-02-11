@@ -9,6 +9,11 @@ A multi-text app to geolocate tweets in United Kingdom and Ireland
 - Model scores ... % on the testing data
 - Data and model were transported using Flask to a font end prepared with html, bootstrap and js
 
+## Tools/Packages Used
+- Python 3.5.1
+- Scikit Learn
+- Pandas, Numpy
+
 ## How to use:
 
 - Insert a text on the box and click submit, the model will predict the most likely county in the UK or Ireland from where your tweet is from (including the probabilities!!)
