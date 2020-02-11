@@ -12,6 +12,7 @@ A multi-text app to geolocate tweets in United Kingdom and Ireland
 ## Tools/Packages Used
 - Python 3.5.1
 - Scikit Learn
+- Keras
 - Pandas, Numpy
 
 ## How to use:
