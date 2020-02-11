@@ -31,8 +31,9 @@
             <div class="col-6">
                 <div class="card mybg border-0 mt-5 mr-3">
                     <h2>A County Prediction of Tweets from the United Kingdom and Ireland</h2>
-                    <p>This app used machine learning on a collection of Tweets from the United Kingdom and Ireland to try to predict the 
-                        location of future Tweets based on the language and words of the Tweet. Try it out below by entering a Tweet from 
+                    <p>This app uses machine learning on a collection of Tweets from the United Kingdom and Ireland to try to predict the 
+                        location of future Tweets based on the lexica (language and words used). 
+                        Try it out below by entering a Tweet from 
                         the British Isles or make up your own!</p>
                     <p><a href="https://github.com/rmsreis/tweet-classifier">Link to Github</a></p>
                 </div>
@@ -49,10 +50,24 @@
         </div>
     </div>
 
+
+<!-- Start of footer -->
+
+<footer>
+    <div class="footer" style = 'position: absolute;bottom: 0; left:10; width: 50%;height: 2.5rem;
+    font-weight: 8; font-size: small;'>
+        &copy; Jonathan Piech , Patrick Murphy and Roberto dos Reis - Feb/2020</div>
+</footer>
+<!-- End of footer -->
+
     <!-- Leaflet-Omnivore JS -->
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
     
     <!-- Our JS -->
     <script src="{{ url_for('static', filename='js/logic.js') }}"></script>    
     
+
 </body>
+
+
+</html>
