@@ -37,12 +37,12 @@ def predict():
 
     #Sample change output
     # output = tweet + "ADDED"
+
     output = {'name': 'Highland', 'prob': '98'}
     # output = tweet
 
     #Returns json
     return jsonify({'output': output})
-
 
 if __name__ == "__main__":
     app.run(debug=True)
