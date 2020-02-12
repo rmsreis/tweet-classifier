@@ -7,9 +7,25 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 # Import Classification Model from file
 from sklearn.externals import joblib
-tfidf = joblib.load('static/model/transf.pkl')
-clf2  = joblib.load('static/model/tweet_classifier2.pkl')
-id_to_category = joblib.load('static/model/id_reverse.pkl')
+
+#model
+model_filename = 'static/model/svc_classifier.pkl' 
+
+#transformer
+transformer_filename = 'static/model/svc_transf.pkl'
+
+#count_vect
+counter_filename = 'static/model/svc_counter.pkl'
+
+# County labels
+labels_filename = 'static/model/county_labels.pkl'
+
+
+labels = joblib.load(labels_filename)
+tf = joblib.load(transformer_filename)
+count = joblib.load(counter_filename)
+
+clf = joblib.load(model_filename)
 
 app = Flask(__name__)
 
@@ -31,10 +47,13 @@ def predict():
     Classify a tweet by city 
     """
 
-    # text_features = tfidf.transform(tweet)
-    # predictions = clf2.predict(text_features)
-    # location = id_to_category[predictions[0]]
+    text_count = count.transform(tweet)
+    text_features = tf.transform(text_count)
+    # predictions = clf.predict_proba(text_features)
+    predictions = pd.DataFrame(clf.predict_proba(text_features)*100, columns=labels.classes_).transpose()
 
+
+    result = predictions.sort_values(0, ascending = False).head(10).to_json()
     #Sample change output
     # output = tweet + "ADDED"
 
@@ -42,7 +61,7 @@ def predict():
     # output = tweet
 
     #Returns json
-    return jsonify({'output': output})
+    return jsonify({'output': result})
 
 if __name__ == "__main__":
     app.run(debug=True)
