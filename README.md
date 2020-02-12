@@ -10,10 +10,14 @@ A multi-text app to geolocate tweets in United Kingdom and Ireland
 - Data and model were transported using Flask to a font end prepared with html, bootstrap and js
 
 ## Tools/Packages Used
-- Python 3.5.1
-- Scikit Learn
-- Keras
-- Pandas, Numpy
+- Scikit Learn (for models LinearSVC, Random Forest, etc..)
+- Keras (for Deep Learning/LSMT)
+- Pandas
+- Numpy
+- Matplotlib
+- 
+
+
 
 ## How to use:
 
