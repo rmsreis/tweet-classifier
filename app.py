@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, json
 
 # Dependencies
 from sklearn.svm import LinearSVC
@@ -21,11 +21,11 @@ counter_filename = 'static/model/svc_counter.pkl'
 labels_filename = 'static/model/county_labels.pkl'
 
 
-labels = joblib.load(labels_filename)
-tf = joblib.load(transformer_filename)
-count = joblib.load(counter_filename)
+# labels = joblib.load(labels_filename)
+# tf = joblib.load(transformer_filename)
+# count = joblib.load(counter_filename)
 
-clf = joblib.load(model_filename)
+# clf = joblib.load(model_filename)
 
 app = Flask(__name__)
 
@@ -38,7 +38,13 @@ def index():
 @app.route("/predict", methods=['POST'])
 def predict():
 
+    labels = joblib.load(labels_filename)
+    tf = joblib.load(transformer_filename)
+    count = joblib.load(counter_filename)
     #Gets tweet from text box
+
+    clf = joblib.load(model_filename)
+
     tweet = [request.form['tweet']]
 
     #Need model manipulation
@@ -49,7 +55,6 @@ def predict():
 
     text_count = count.transform(tweet)
     text_features = tf.transform(text_count)
-    # predictions = clf.predict_proba(text_features)
     predictions = pd.DataFrame(clf.predict_proba(text_features)*100, columns=labels.classes_).transpose()
 
 
@@ -57,11 +62,21 @@ def predict():
     #Sample change output
     # output = tweet + "ADDED"
 
-    output = {'name': 'Highland', 'prob': '98'}
+    data = result['0']
+
+    empty = []
+    for county in data:
+            # print(county)
+        print(data[county])
+        empty.append(json.loads('{"name": "' +county+ '", "prob": "' +str(data[county])+ '"}'))
+
+
+
+    # output = {'name': 'Highland', 'prob': '98'}
     # output = tweet
 
     #Returns json
-    return jsonify({'output': result})
+    return jsonify({'output': empty})
 
 if __name__ == "__main__":
     app.run(debug=True)
