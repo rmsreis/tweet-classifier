@@ -23,4 +23,4 @@ The final app is deployed on Heroku here:
 
 Enjoy!
 
-Roberto (@rmsreis), Jonathan(@jonathanpiech) and Patrick(@pqmurphy)
+Roberto (@rmsreis), Jonathan(@jonathanpiech) and Patrick(@pqmurphy) 
