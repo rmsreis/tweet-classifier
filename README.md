@@ -6,7 +6,7 @@ A multi-text app to geolocate tweets in United Kingdom and Ireland
 
 - We use Python/Jupyter Notebook to implement LinearSVC (Support Vector Classifier) within Scikit-Learn package.
 - From more the 170 000 tweets we have succesfully reverse geocoded more than 50 000 using geotagged 'latitude' and 'logitude' in the dataset and Google Geocoding API to feed our traning model.
-- Model scores ... % on the testing data
+- LinearSVC Model scores about 60 % on the testing data
 - Data and model were transported using Flask to a font end prepared with html, bootstrap and js
 
 ## Tools/Packages Used
