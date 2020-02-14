@@ -14,8 +14,7 @@ A multi-text app to geolocate tweets in United Kingdom and Ireland
 - Keras (for Deep Learning/LSMT)
 - Pandas
 - Numpy
-- Matplotlib
-- 
+- Matplotlib (and Seaborn)
 
 
 
