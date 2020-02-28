@@ -1,33 +1,28 @@
 from flask import Flask, jsonify, render_template, request, json
-
-# Dependencies
+import pandas as pd
 from sklearn.svm import LinearSVC
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.feature_extraction.text import CountVectorizer
-
-# Import Classification Model from file
+from sklearn.preprocessing import LabelEncoder
 from sklearn.externals import joblib
+
+app = Flask(__name__)
 
 #model
 model_filename = 'static/model/svc_classifier.pkl' 
-
 #transformer
 transformer_filename = 'static/model/svc_transf.pkl'
-
 #count_vect
 counter_filename = 'static/model/svc_counter.pkl'
-
 # County labels
 labels_filename = 'static/model/county_labels.pkl'
 
-
-# labels = joblib.load(labels_filename)
-# tf = joblib.load(transformer_filename)
-# count = joblib.load(counter_filename)
-
-# clf = joblib.load(model_filename)
-
-app = Flask(__name__)
+#Load parts of model
+labels = LabelEncoder()
+labels = joblib.load(labels_filename)
+tf = joblib.load(transformer_filename)
+count = joblib.load(counter_filename)
+clf = joblib.load(model_filename)
 
 @app.route("/")
 def index():
@@ -38,42 +33,27 @@ def index():
 @app.route("/predict", methods=['POST'])
 def predict():
 
-    labels = joblib.load(labels_filename)
-    tf = joblib.load(transformer_filename)
-    count = joblib.load(counter_filename)
-    #Gets tweet from text box
-
-    clf = joblib.load(model_filename)
-
+    # #Gets tweet from text box
     tweet = [request.form['tweet']]
 
-    #Need model manipulation
-
-    """
-    Classify a tweet by city 
-    """
-
+    #Run model for tweet
     text_count = count.transform(tweet)
     text_features = tf.transform(text_count)
+
+    #Place predictions in dataframe
     predictions = pd.DataFrame(clf.predict_proba(text_features)*100, columns=labels.classes_).transpose()
+    
+    #Round
+    predictions[0] = predictions[0].round(2)
 
+    #Get top 10
+    result = predictions.sort_values(0, ascending = False).head(10).to_dict()
+    data = result[0]
 
-    result = predictions.sort_values(0, ascending = False).head(10).to_json()
-    #Sample change output
-    # output = tweet + "ADDED"
-
-    data = result['0']
-
+    #Format for Javascript variable probdata
     empty = []
     for county in data:
-            # print(county)
-        print(data[county])
         empty.append(json.loads('{"name": "' +county+ '", "prob": "' +str(data[county])+ '"}'))
-
-
-
-    # output = {'name': 'Highland', 'prob': '98'}
-    # output = tweet
 
     #Returns json
     return jsonify({'output': empty})
