@@ -20,6 +20,6 @@ A multi-text app to geolocate tweets in United Kingdom and Ireland
 
 - Insert a text on the box and click submit, the model will predict the most likely county in the UK or Ireland from where your tweet is from (including the probabilities!!)
 
-Enjoy!
+App is available on Heroku: https://uk-tweet-classifier.herokuapp.com Enjoy!
 
 Roberto (@rmsreis), Jonathan(@jonathanpiech) and Patrick(@pqmurphy) 
